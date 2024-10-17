@@ -1,0 +1,15 @@
+services:
+  csprng:
+    build: .
+    image: csprng-img:latest
+    container_name: csprng
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]

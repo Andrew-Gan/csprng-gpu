@@ -1,0 +1,225 @@
+#0 building with "default" instance using docker driver
+
+#1 [csprng internal] load build definition from dockerfile
+#1 transferring dockerfile: 429B done
+#1 DONE 0.0s
+
+#2 [csprng internal] load metadata for docker.io/nvidia/cuda:11.1.1-devel-ubuntu20.04
+#2 DONE 0.3s
+
+#3 [csprng internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [csprng 1/8] FROM docker.io/nvidia/cuda:11.1.1-devel-ubuntu20.04@sha256:299cd42d4c364516bd120fa8097b0397cac6c962e3761ef822656e5c5a25ea40
+#4 DONE 0.0s
+
+#5 [csprng 2/8] RUN apt update && apt install -y bash g++ python3 python3-pip
+#5 CACHED
+
+#6 [csprng internal] load build context
+#6 transferring context: 978.44kB 0.0s done
+#6 DONE 0.1s
+
+#7 [csprng 3/8] RUN pip3 install torch==1.8.0
+#7 0.825 Collecting torch==1.8.0
+#7 0.882   Downloading torch-1.8.0-cp38-cp38-manylinux1_x86_64.whl (735.5 MB)
+#7 12.69 Collecting typing-extensions
+#7 12.69   Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+#7 13.10 Collecting numpy
+#7 13.12   Downloading numpy-1.24.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+#7 13.56 Installing collected packages: typing-extensions, numpy, torch
+#7 23.29 Successfully installed numpy-1.24.4 torch-1.8.0 typing-extensions-4.12.2
+#7 DONE 24.3s
+
+#8 [csprng 4/8] COPY ./csprng /home/csprng
+#8 DONE 0.1s
+
+#9 [csprng 5/8] WORKDIR /home/csprng
+#9 DONE 0.0s
+
+#10 [csprng 6/8] RUN python3 setup.py install
+#10 0.656 No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+#10 0.656 Building wheel torchcsprng-0.3.0a0
+#10 0.656 running install
+#10 0.689 running bdist_egg
+#10 0.689 running egg_info
+#10 0.689 creating torchcsprng.egg-info
+#10 0.689 writing torchcsprng.egg-info/PKG-INFO
+#10 0.690 writing dependency_links to torchcsprng.egg-info/dependency_links.txt
+#10 0.690 writing requirements to torchcsprng.egg-info/requires.txt
+#10 0.690 writing top-level names to torchcsprng.egg-info/top_level.txt
+#10 0.690 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 0.716 reading manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 0.717 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 0.717 installing library code to build/bdist.linux-x86_64/egg
+#10 0.717 running install_lib
+#10 0.717 running build_py
+#10 0.717 creating build
+#10 0.717 creating build/lib.linux-x86_64-3.8
+#10 0.717 creating build/lib.linux-x86_64-3.8/torchcsprng
+#10 0.717 copying torchcsprng/__init__.py -> build/lib.linux-x86_64-3.8/torchcsprng
+#10 0.717 copying torchcsprng/version.py -> build/lib.linux-x86_64-3.8/torchcsprng
+#10 0.718 running build_ext
+#10 0.730 building 'torchcsprng._C' extension
+#10 0.730 creating build/temp.linux-x86_64-3.8
+#10 0.730 creating build/temp.linux-x86_64-3.8/home
+#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng
+#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng
+#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc
+#10 0.731 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/cpu
+#10 0.731 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/cuda
+#10 0.731 x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -DWITH_CUDA -I/usr/local/lib/python3.8/dist-packages/torch/include -I/usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.8/dist-packages/torch/include/TH -I/usr/local/lib/python3.8/dist-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/include/python3.8 -c /home/csprng/torchcsprng/csrc/csprng.cpp -o build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/csprng.o -std=c++17 -fopenmp -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE="_gcc" -DPYBIND11_STDLIB="_libstdcpp" -DPYBIND11_BUILD_ABI="_cxxabi1011" -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+#10 0.883 In file included from /home/csprng/torchcsprng/csrc/block_cipher.h:13,
+#10 0.883                  from /home/csprng/torchcsprng/csrc/kernels_commons.h:17,
+#10 0.883                  from /home/csprng/torchcsprng/csrc/csprng.cpp:15:
+#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:53: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
+#10 0.883    53 | #pragma unroll
+#10 0.883       | 
+#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:58: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
+#10 0.883    58 | #pragma unroll
+#10 0.883       | 
+#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:66: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
+#10 0.883    66 | #pragma unroll
+#10 0.883       | 
+#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:91: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
+#10 0.883    91 | #pragma unroll
+#10 0.883       | 
+#10 4.239 In file included from /home/csprng/torchcsprng/csrc/csprng.cpp:15:
+#10 4.239 /home/csprng/torchcsprng/csrc/kernels_commons.h:42:8: error: ‘void CSPRNGGeneratorImpl::set_offset(uint64_t)’ marked ‘override’, but does not override
+#10 4.239    42 |   void set_offset(uint64_t offset) override { throw std::runtime_error("not implemented"); }
+#10 4.239       |        ^~~~~~~~~~
+#10 4.239 /home/csprng/torchcsprng/csrc/kernels_commons.h:43:12: error: ‘uint64_t CSPRNGGeneratorImpl::get_offset() const’ marked ‘override’, but does not override
+#10 4.239    43 |   uint64_t get_offset() const override { throw std::runtime_error("not implenented"); }
+#10 4.239       |            ^~~~~~~~~~
+#10 4.254 /home/csprng/torchcsprng/csrc/csprng.cpp:320:89: error: could not convert ‘c10::nullopt’ from ‘const c10::nullopt_t’ to ‘std::optional<std::basic_string<char> >’
+#10 4.254   320 | Generator create_random_device_generator(std::optional<std::string> token = c10::nullopt) {
+#10 4.254       |                                                                                         ^
+#10 4.254       |                                                                                         |
+#10 4.254       |                                                                                         const c10::nullopt_t
+#10 4.256 /home/csprng/torchcsprng/csrc/csprng.cpp:328:79: error: could not convert ‘c10::nullopt’ from ‘const c10::nullopt_t’ to ‘std::optional<long unsigned int>’
+#10 4.256   328 | Generator create_mt19937_generator(std::optional<uint64_t> seed = c10::nullopt) {
+#10 4.256       |                                                                               ^
+#10 4.256       |                                                                               |
+#10 4.256       |                                                                               const c10::nullopt_t
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.072   252 |     auto gen = at::check_generator<RNG>(generator);
+#10 5.072       |                                         ^~~~~~~~~
+#10 5.072       |                                         |
+#10 5.072       |                                         std::optional<at::Generator>
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
+#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
+#10 6.069 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:1138,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/record_function.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Dispatch.h:5,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ATen.h:13,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
+#10 6.069                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h: In instantiation of ‘T c10::generic_to(c10::IValue, c10::_fake_type<T>) [with T = std::optional<at::Generator>]’:
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:992:20:   required from ‘T c10::IValue::to() && [with T = std::optional<at::Generator>]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:256:33:   required from ‘static T c10::impl::ivalue_to_arg<T, AllowDeprecatedTypes>::call(c10::IValue&&) [with T = std::optional<at::Generator>; bool AllowDeprecatedTypes = false]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:326:119:   required from ‘std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> c10::impl::call_functor_with_args_from_stack_(Functor*, c10::Stack*, std::index_sequence<_Idx ...>) [with Functor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; long unsigned int ...ivalue_arg_indices = {0, 1, 2, 3}; std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> = at::Tensor; c10::Stack = std::vector<c10::IValue>; std::index_sequence<_Idx ...> = std::integer_sequence<long unsigned int, 0, 1, 2, 3>]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:335:77:   required from ‘std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> c10::impl::call_functor_with_args_from_stack(Functor*, c10::Stack*) [with Functor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> = at::Tensor; c10::Stack = std::vector<c10::IValue>]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:385:79:   required from ‘static void c10::impl::make_boxed_from_unboxed_functor<KernelFunctor, AllowDeprecatedTypes>::call(c10::OperatorKernel*, const c10::OperatorHandle&, c10::Stack*) [with KernelFunctor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; c10::Stack = std::vector<c10::IValue>]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/KernelFunction_impl.h:115:9:   required from ‘static c10::KernelFunction c10::KernelFunction::makeFromUnboxedFunctor(std::unique_ptr<c10::OperatorKernel>) [with bool AllowLegacyTypes = false; KernelFunctor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/KernelFunction_impl.h:144:114:   required from ‘static c10::KernelFunction c10::KernelFunction::makeFromUnboxedRuntimeFunction(FuncType*) [with bool AllowLegacyTypes = false; FuncType = at::Tensor&(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>)]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/torch/library.h:108:64:   required from ‘torch::CppFunction::CppFunction(Func*, std::enable_if_t<c10::guts::is_function_type<FuncType_>::value, std::nullptr_t>) [with Func = at::Tensor&(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>); std::enable_if_t<c10::guts::is_function_type<FuncType_>::value, std::nullptr_t> = std::nullptr_t]’
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/torch/library.h:539:17:   required from ‘torch::Library& torch::Library::impl(Name, Func&&) & [with Name = const char*; Func = at::Tensor& (&)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>)]’
+#10 6.069 /home/csprng/torchcsprng/csrc/csprng.cpp:346:52:   required from here
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:865:9: error: no type named ‘element_type’ in ‘std::__remove_pointer_helper<std::optional<at::Generator>, std::optional<at::Generator> >::type’ {aka ‘class std::optional<at::Generator>’}
+#10 6.069   865 |   using ElemType = typename std::remove_pointer<T>::type::element_type;
+#10 6.069       |         ^~~~~~~~
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:866:52: error: no matching function for call to ‘c10::IValue::<expression error>()’
+#10 6.069   866 |   return std::move(ivalue).toCustomClass<ElemType>();
+#10 6.069       |                                                    ^
+#10 6.069 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/record_function.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Dispatch.h:5,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ATen.h:13,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
+#10 6.069                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:427:25: note: candidate: ‘template<class T> c10::intrusive_ptr<T> c10::IValue::toCustomClass() &&’
+#10 6.069   427 |   c10::intrusive_ptr<T> toCustomClass() &&;
+#10 6.069       |                         ^~~~~~~~~~~~~
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:427:25: note:   template argument deduction/substitution failed:
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:429:25: note: candidate: ‘template<class T> c10::intrusive_ptr<T> c10::IValue::toCustomClass() const &’
+#10 6.069   429 |   c10::intrusive_ptr<T> toCustomClass() const&;
+#10 6.069       |                         ^~~~~~~~~~~~~
+#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:429:25: note:   template argument deduction/substitution failed:
+#10 6.493 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Parallel.h:140,
+#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/utils.h:3,
+#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/nn/cloneable.h:5,
+#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/nn.h:3,
+#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:13,
+#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
+#10 6.493                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493    15 | inline void parallel_for(
+#10 6.493       |             ^~~~~~~~~~~~
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+#10 6.858 /usr/local/lib/python3.8/dist-packages/torch/utils/cpp_extension.py:369: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
+#10 6.858   warnings.warn(msg.format('we could not find ninja.'))
+#10 6.859 error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+#10 ERROR: process "/bin/sh -c python3 setup.py install" did not complete successfully: exit code: 1
+------
+ > [csprng 6/8] RUN python3 setup.py install:
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
+6.858 /usr/local/lib/python3.8/dist-packages/torch/utils/cpp_extension.py:369: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
+6.858   warnings.warn(msg.format('we could not find ninja.'))
+6.859 error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+------
+failed to solve: process "/bin/sh -c python3 setup.py install" did not complete successfully: exit code: 1
