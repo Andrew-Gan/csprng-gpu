@@ -1,225 +1,489 @@
 #0 building with "default" instance using docker driver
 
 #1 [csprng internal] load build definition from dockerfile
-#1 transferring dockerfile: 429B done
+#1 transferring dockerfile: 468B done
 #1 DONE 0.0s
 
-#2 [csprng internal] load metadata for docker.io/nvidia/cuda:11.1.1-devel-ubuntu20.04
-#2 DONE 0.3s
+#2 [csprng internal] load metadata for docker.io/nvidia/cuda:12.1.1-devel-ubuntu22.04
+#2 DONE 0.1s
 
 #3 [csprng internal] load .dockerignore
 #3 transferring context: 2B done
 #3 DONE 0.0s
 
-#4 [csprng 1/8] FROM docker.io/nvidia/cuda:11.1.1-devel-ubuntu20.04@sha256:299cd42d4c364516bd120fa8097b0397cac6c962e3761ef822656e5c5a25ea40
+#4 [csprng  1/11] FROM docker.io/nvidia/cuda:12.1.1-devel-ubuntu22.04@sha256:7012e535a47883527d402da998384c30b936140c05e2537158c80b8143ee7425
 #4 DONE 0.0s
 
-#5 [csprng 2/8] RUN apt update && apt install -y bash g++ python3 python3-pip
-#5 CACHED
+#5 [csprng internal] load build context
+#5 transferring context: 24.24kB 0.0s done
+#5 DONE 0.0s
 
-#6 [csprng internal] load build context
-#6 transferring context: 978.44kB 0.0s done
-#6 DONE 0.1s
+#6 [csprng  2/11] RUN apt update && apt install -y bash g++ python3 python3-pip
+#6 CACHED
 
-#7 [csprng 3/8] RUN pip3 install torch==1.8.0
-#7 0.825 Collecting torch==1.8.0
-#7 0.882   Downloading torch-1.8.0-cp38-cp38-manylinux1_x86_64.whl (735.5 MB)
-#7 12.69 Collecting typing-extensions
-#7 12.69   Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
-#7 13.10 Collecting numpy
-#7 13.12   Downloading numpy-1.24.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
-#7 13.56 Installing collected packages: typing-extensions, numpy, torch
-#7 23.29 Successfully installed numpy-1.24.4 torch-1.8.0 typing-extensions-4.12.2
-#7 DONE 24.3s
+#7 [csprng  3/11] RUN pip3 install torch torchvision numpy
+#7 CACHED
 
-#8 [csprng 4/8] COPY ./csprng /home/csprng
-#8 DONE 0.1s
+#8 [csprng  4/11] COPY ./csprng /home/csprng
+#8 CACHED
 
-#9 [csprng 5/8] WORKDIR /home/csprng
-#9 DONE 0.0s
+#9 [csprng  5/11] WORKDIR /home/csprng
+#9 CACHED
 
-#10 [csprng 6/8] RUN python3 setup.py install
-#10 0.656 No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
-#10 0.656 Building wheel torchcsprng-0.3.0a0
-#10 0.656 running install
-#10 0.689 running bdist_egg
-#10 0.689 running egg_info
-#10 0.689 creating torchcsprng.egg-info
-#10 0.689 writing torchcsprng.egg-info/PKG-INFO
-#10 0.690 writing dependency_links to torchcsprng.egg-info/dependency_links.txt
-#10 0.690 writing requirements to torchcsprng.egg-info/requires.txt
-#10 0.690 writing top-level names to torchcsprng.egg-info/top_level.txt
-#10 0.690 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
-#10 0.716 reading manifest file 'torchcsprng.egg-info/SOURCES.txt'
-#10 0.717 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
-#10 0.717 installing library code to build/bdist.linux-x86_64/egg
-#10 0.717 running install_lib
-#10 0.717 running build_py
-#10 0.717 creating build
-#10 0.717 creating build/lib.linux-x86_64-3.8
-#10 0.717 creating build/lib.linux-x86_64-3.8/torchcsprng
-#10 0.717 copying torchcsprng/__init__.py -> build/lib.linux-x86_64-3.8/torchcsprng
-#10 0.717 copying torchcsprng/version.py -> build/lib.linux-x86_64-3.8/torchcsprng
-#10 0.718 running build_ext
-#10 0.730 building 'torchcsprng._C' extension
-#10 0.730 creating build/temp.linux-x86_64-3.8
-#10 0.730 creating build/temp.linux-x86_64-3.8/home
-#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng
-#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng
-#10 0.730 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc
-#10 0.731 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/cpu
-#10 0.731 creating build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/cuda
-#10 0.731 x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -DWITH_CUDA -I/usr/local/lib/python3.8/dist-packages/torch/include -I/usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.8/dist-packages/torch/include/TH -I/usr/local/lib/python3.8/dist-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/include/python3.8 -c /home/csprng/torchcsprng/csrc/csprng.cpp -o build/temp.linux-x86_64-3.8/home/csprng/torchcsprng/csrc/csprng.o -std=c++17 -fopenmp -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE="_gcc" -DPYBIND11_STDLIB="_libstdcpp" -DPYBIND11_BUILD_ABI="_cxxabi1011" -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
-#10 0.883 In file included from /home/csprng/torchcsprng/csrc/block_cipher.h:13,
-#10 0.883                  from /home/csprng/torchcsprng/csrc/kernels_commons.h:17,
-#10 0.883                  from /home/csprng/torchcsprng/csrc/csprng.cpp:15:
-#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:53: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
-#10 0.883    53 | #pragma unroll
-#10 0.883       | 
-#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:58: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
-#10 0.883    58 | #pragma unroll
-#10 0.883       | 
-#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:66: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
-#10 0.883    66 | #pragma unroll
-#10 0.883       | 
-#10 0.883 /home/csprng/torchcsprng/csrc/OffsetCalculator.cuh:91: warning: ignoring #pragma unroll  [-Wunknown-pragmas]
-#10 0.883    91 | #pragma unroll
-#10 0.883       | 
-#10 4.239 In file included from /home/csprng/torchcsprng/csrc/csprng.cpp:15:
-#10 4.239 /home/csprng/torchcsprng/csrc/kernels_commons.h:42:8: error: ‘void CSPRNGGeneratorImpl::set_offset(uint64_t)’ marked ‘override’, but does not override
-#10 4.239    42 |   void set_offset(uint64_t offset) override { throw std::runtime_error("not implemented"); }
-#10 4.239       |        ^~~~~~~~~~
-#10 4.239 /home/csprng/torchcsprng/csrc/kernels_commons.h:43:12: error: ‘uint64_t CSPRNGGeneratorImpl::get_offset() const’ marked ‘override’, but does not override
-#10 4.239    43 |   uint64_t get_offset() const override { throw std::runtime_error("not implenented"); }
-#10 4.239       |            ^~~~~~~~~~
-#10 4.254 /home/csprng/torchcsprng/csrc/csprng.cpp:320:89: error: could not convert ‘c10::nullopt’ from ‘const c10::nullopt_t’ to ‘std::optional<std::basic_string<char> >’
-#10 4.254   320 | Generator create_random_device_generator(std::optional<std::string> token = c10::nullopt) {
-#10 4.254       |                                                                                         ^
-#10 4.254       |                                                                                         |
-#10 4.254       |                                                                                         const c10::nullopt_t
-#10 4.256 /home/csprng/torchcsprng/csrc/csprng.cpp:328:79: error: could not convert ‘c10::nullopt’ from ‘const c10::nullopt_t’ to ‘std::optional<long unsigned int>’
-#10 4.256   328 | Generator create_mt19937_generator(std::optional<uint64_t> seed = c10::nullopt) {
-#10 4.256       |                                                                               ^
-#10 4.256       |                                                                               |
-#10 4.256       |                                                                               const c10::nullopt_t
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.072   252 |     auto gen = at::check_generator<RNG>(generator);
-#10 5.072       |                                         ^~~~~~~~~
-#10 5.072       |                                         |
-#10 5.072       |                                         std::optional<at::Generator>
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.072 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.073 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp: In instantiation of ‘void {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]’:
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:286:3:   required from here
-#10 5.074 /home/csprng/torchcsprng/csrc/csprng.cpp:252:41: error: could not convert ‘generator’ from ‘std::optional<at::Generator>’ to ‘c10::optional<at::Generator>’
-#10 6.069 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:1138,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/record_function.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Dispatch.h:5,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ATen.h:13,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
-#10 6.069                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h: In instantiation of ‘T c10::generic_to(c10::IValue, c10::_fake_type<T>) [with T = std::optional<at::Generator>]’:
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:992:20:   required from ‘T c10::IValue::to() && [with T = std::optional<at::Generator>]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:256:33:   required from ‘static T c10::impl::ivalue_to_arg<T, AllowDeprecatedTypes>::call(c10::IValue&&) [with T = std::optional<at::Generator>; bool AllowDeprecatedTypes = false]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:326:119:   required from ‘std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> c10::impl::call_functor_with_args_from_stack_(Functor*, c10::Stack*, std::index_sequence<_Idx ...>) [with Functor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; long unsigned int ...ivalue_arg_indices = {0, 1, 2, 3}; std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> = at::Tensor; c10::Stack = std::vector<c10::IValue>; std::index_sequence<_Idx ...> = std::integer_sequence<long unsigned int, 0, 1, 2, 3>]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:335:77:   required from ‘std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> c10::impl::call_functor_with_args_from_stack(Functor*, c10::Stack*) [with Functor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; std::decay_t<typename c10::guts::infer_function_traits<Functor>::type::return_type> = at::Tensor; c10::Stack = std::vector<c10::IValue>]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/impl/make_boxed_from_unboxed_functor.h:385:79:   required from ‘static void c10::impl::make_boxed_from_unboxed_functor<KernelFunctor, AllowDeprecatedTypes>::call(c10::OperatorKernel*, const c10::OperatorHandle&, c10::Stack*) [with KernelFunctor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >; bool AllowDeprecatedTypes = false; c10::Stack = std::vector<c10::IValue>]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/KernelFunction_impl.h:115:9:   required from ‘static c10::KernelFunction c10::KernelFunction::makeFromUnboxedFunctor(std::unique_ptr<c10::OperatorKernel>) [with bool AllowLegacyTypes = false; KernelFunctor = c10::impl::detail::WrapFunctionIntoRuntimeFunctor_<at::Tensor& (*)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>), at::Tensor&, c10::guts::typelist::typelist<at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator> > >]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/boxing/KernelFunction_impl.h:144:114:   required from ‘static c10::KernelFunction c10::KernelFunction::makeFromUnboxedRuntimeFunction(FuncType*) [with bool AllowLegacyTypes = false; FuncType = at::Tensor&(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>)]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/torch/library.h:108:64:   required from ‘torch::CppFunction::CppFunction(Func*, std::enable_if_t<c10::guts::is_function_type<FuncType_>::value, std::nullptr_t>) [with Func = at::Tensor&(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>); std::enable_if_t<c10::guts::is_function_type<FuncType_>::value, std::nullptr_t> = std::nullptr_t]’
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/torch/library.h:539:17:   required from ‘torch::Library& torch::Library::impl(Name, Func&&) & [with Name = const char*; Func = at::Tensor& (&)(at::Tensor&, long int, c10::optional<long int>, std::optional<at::Generator>)]’
-#10 6.069 /home/csprng/torchcsprng/csrc/csprng.cpp:346:52:   required from here
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:865:9: error: no type named ‘element_type’ in ‘std::__remove_pointer_helper<std::optional<at::Generator>, std::optional<at::Generator> >::type’ {aka ‘class std::optional<at::Generator>’}
-#10 6.069   865 |   using ElemType = typename std::remove_pointer<T>::type::element_type;
-#10 6.069       |         ^~~~~~~~
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue_inl.h:866:52: error: no matching function for call to ‘c10::IValue::<expression error>()’
-#10 6.069   866 |   return std::move(ivalue).toCustomClass<ElemType>();
-#10 6.069       |                                                    ^
-#10 6.069 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/record_function.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Dispatch.h:5,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ATen.h:13,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
-#10 6.069                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
-#10 6.069                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:427:25: note: candidate: ‘template<class T> c10::intrusive_ptr<T> c10::IValue::toCustomClass() &&’
-#10 6.069   427 |   c10::intrusive_ptr<T> toCustomClass() &&;
-#10 6.069       |                         ^~~~~~~~~~~~~
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:427:25: note:   template argument deduction/substitution failed:
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:429:25: note: candidate: ‘template<class T> c10::intrusive_ptr<T> c10::IValue::toCustomClass() const &’
-#10 6.069   429 |   c10::intrusive_ptr<T> toCustomClass() const&;
-#10 6.069       |                         ^~~~~~~~~~~~~
-#10 6.069 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/core/ivalue.h:429:25: note:   template argument deduction/substitution failed:
-#10 6.493 In file included from /usr/local/lib/python3.8/dist-packages/torch/include/ATen/Parallel.h:140,
-#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/utils.h:3,
-#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/nn/cloneable.h:5,
-#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/nn.h:3,
-#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/csrc/api/include/torch/all.h:13,
-#10 6.493                  from /usr/local/lib/python3.8/dist-packages/torch/include/torch/extension.h:4,
-#10 6.493                  from /home/csprng/torchcsprng/csrc/csprng.cpp:8:
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493    15 | inline void parallel_for(
-#10 6.493       |             ^~~~~~~~~~~~
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.493 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: error: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>; int64_t = long int]’, declared using local type ‘const {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl; int64_t = long int]::<lambda(int64_t, int64_t)>’, is used but never defined [-fpermissive]
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = c10::Half; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-#10 6.858 /usr/local/lib/python3.8/dist-packages/torch/utils/cpp_extension.py:369: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
-#10 6.858   warnings.warn(msg.format('we could not find ninja.'))
-#10 6.859 error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+#10 [csprng  6/11] RUN python3 setup.py install
+#10 0.207 /home/csprng/setup.py:1: DeprecationWarning: The distutils package is deprecated and slated for removal in Python 3.12. Use setuptools or check PEP 632 for potential alternatives
+#10 0.207   import distutils.command.clean
+#10 1.333 No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+#10 1.340 Building wheel torchcsprng-0.3.0a0
+#10 1.340 running install
+#10 1.340 /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+#10 1.340   warnings.warn(
+#10 1.350 /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+#10 1.350   warnings.warn(
+#10 1.362 running bdist_egg
+#10 1.362 running egg_info
+#10 1.362 creating torchcsprng.egg-info
+#10 1.362 writing torchcsprng.egg-info/PKG-INFO
+#10 1.363 writing dependency_links to torchcsprng.egg-info/dependency_links.txt
+#10 1.363 writing requirements to torchcsprng.egg-info/requires.txt
+#10 1.363 writing top-level names to torchcsprng.egg-info/top_level.txt
+#10 1.363 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 1.364 /usr/local/lib/python3.10/dist-packages/torch/utils/cpp_extension.py:497: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
+#10 1.364   warnings.warn(msg.format('we could not find ninja.'))
+#10 1.365 reading manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 1.365 adding license file 'LICENSE'
+#10 1.365 writing manifest file 'torchcsprng.egg-info/SOURCES.txt'
+#10 1.365 installing library code to build/bdist.linux-x86_64/egg
+#10 1.365 running install_lib
+#10 1.365 running build_py
+#10 1.365 creating build
+#10 1.365 creating build/lib.linux-x86_64-3.10
+#10 1.365 creating build/lib.linux-x86_64-3.10/torchcsprng
+#10 1.365 copying torchcsprng/__init__.py -> build/lib.linux-x86_64-3.10/torchcsprng
+#10 1.365 copying torchcsprng/version.py -> build/lib.linux-x86_64-3.10/torchcsprng
+#10 1.366 running build_ext
+#10 1.369 /usr/local/lib/python3.10/dist-packages/torch/utils/cpp_extension.py:416: UserWarning: The detected CUDA version (12.1) has a minor version mismatch with the version that was used to compile PyTorch (12.4). Most likely this shouldn't be a problem.
+#10 1.369   warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
+#10 1.369 /usr/local/lib/python3.10/dist-packages/torch/utils/cpp_extension.py:426: UserWarning: There are no x86_64-linux-gnu-g++ version bounds defined for CUDA version 12.1
+#10 1.369   warnings.warn(f'There are no {compiler_name} version bounds defined for CUDA version {cuda_str_version}')
+#10 1.370 building 'torchcsprng._C' extension
+#10 1.370 creating build/temp.linux-x86_64-3.10
+#10 1.370 creating build/temp.linux-x86_64-3.10/home
+#10 1.370 creating build/temp.linux-x86_64-3.10/home/csprng
+#10 1.370 creating build/temp.linux-x86_64-3.10/home/csprng/torchcsprng
+#10 1.370 creating build/temp.linux-x86_64-3.10/home/csprng/torchcsprng/csrc
+#10 1.370 creating build/temp.linux-x86_64-3.10/home/csprng/torchcsprng/csrc/cpu
+#10 1.370 creating build/temp.linux-x86_64-3.10/home/csprng/torchcsprng/csrc/cuda
+#10 1.370 x86_64-linux-gnu-gcc -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -DWITH_CUDA -I/usr/local/lib/python3.10/dist-packages/torch/include -I/usr/local/lib/python3.10/dist-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/dist-packages/torch/include/TH -I/usr/local/lib/python3.10/dist-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/include/python3.10 -c /home/csprng/torchcsprng/csrc/cpu/kernels.cpp -o build/temp.linux-x86_64-3.10/home/csprng/torchcsprng/csrc/cpu/kernels.o -fopenmp -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE="_gcc" -DPYBIND11_STDLIB="_libstdcpp" -DPYBIND11_BUILD_ABI="_cxxabi1011" -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+#10 1.779 In file included from /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:13,
+#10 1.779                  from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 1.779                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 1.779 /home/csprng/torchcsprng/csrc/cpu/../OffsetCalculator.cuh:53: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.779    53 | #pragma unroll
+#10 1.779       | 
+#10 1.779 /home/csprng/torchcsprng/csrc/cpu/../OffsetCalculator.cuh:58: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.779    58 | #pragma unroll
+#10 1.779       | 
+#10 1.779 /home/csprng/torchcsprng/csrc/cpu/../OffsetCalculator.cuh:66: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.779    66 | #pragma unroll
+#10 1.779       | 
+#10 1.779 /home/csprng/torchcsprng/csrc/cpu/../OffsetCalculator.cuh:91: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.779    91 | #pragma unroll
+#10 1.779       | 
+#10 1.780 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:8,
+#10 1.780                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 1.780 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:115: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.780   115 |     #pragma unroll
+#10 1.780       | 
+#10 1.780 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:120: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.780   120 |     #pragma unroll
+#10 1.780       | 
+#10 1.780 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:139: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.780   139 |         #pragma unroll
+#10 1.780       | 
+#10 1.780 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:168: warning: ignoring ‘#pragma unroll ’ [-Wunknown-pragmas]
+#10 1.780   168 |     #pragma unroll
+#10 1.780       | 
+#10 6.042 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:9:1: error: ‘__constant__’ does not name a type
+#10 6.042     9 | __constant__
+#10 6.042       | ^~~~~~~~~~~~
+#10 6.046 /home/csprng/torchcsprng/csrc/cpu/../aes.inc: In function ‘void torch::csprng::cpu::encrypt(uint8_t*, const uint8_t*)’:
+#10 6.046 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:92:25: error: ‘blockIdx’ was not declared in this scope
+#10 6.046    92 |     uint32_t threadID = blockIdx.x * blockDim.x + threadIdx.x;
+#10 6.046       |                         ^~~~~~~~
+#10 6.049 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:92:38: error: ‘blockDim’ was not declared in this scope
+#10 6.049    92 |     uint32_t threadID = blockIdx.x * blockDim.x + threadIdx.x;
+#10 6.049       |                                      ^~~~~~~~
+#10 6.051 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:92:51: error: ‘threadIdx’ was not declared in this scope; did you mean ‘threadID’?
+#10 6.051    92 |     uint32_t threadID = blockIdx.x * blockDim.x + threadIdx.x;
+#10 6.051       |                                                   ^~~~~~~~~
+#10 6.051       |                                                   threadID
+#10 6.051 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:97:29: error: cannot convert ‘uint8_t*’ {aka ‘unsigned char*’} to ‘uint32_t*’ {aka ‘unsigned int*’} in initialization
+#10 6.051    97 |     uint32_t* myData = data + threadID * (AES_BLOCK_SIZE / sizeof(*data));
+#10 6.051       |                        ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.051       |                             |
+#10 6.051       |                             uint8_t* {aka unsigned char*}
+#10 6.054 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:99:5: error: ‘__shared__’ was not declared in this scope; did you mean ‘__thrd_t’?
+#10 6.054    99 |     __shared__ uint32_t t0S[T_TABLE_SIZE][GPU_SHARED_MEM_BANK];
+#10 6.054       |     ^~~~~~~~~~
+#10 6.054       |     __thrd_t
+#10 6.054 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:100:15: error: expected ‘;’ before ‘uint32_t’
+#10 6.054   100 |     __shared__ uint32_t rkS[AES_RK_SIZE / sizeof(*rk)];
+#10 6.054       |               ^~~~~~~~~
+#10 6.054       |               ;
+#10 6.056 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:101:24: error: ‘rkS’ was not declared in this scope; did you mean ‘rk’?
+#10 6.056   101 |     uint32_t* currRk = rkS;
+#10 6.056       |                        ^~~
+#10 6.056       |                        rk
+#10 6.058 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:106:9: error: ‘t0S’ was not declared in this scope
+#10 6.058   106 |         t0S[tableLoc][warpThreadIndex] = T0c[tableLoc];
+#10 6.058       |         ^~~
+#10 6.060 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:106:42: error: ‘T0c’ was not declared in this scope
+#10 6.060   106 |         t0S[tableLoc][warpThreadIndex] = T0c[tableLoc];
+#10 6.060       |                                          ^~~
+#10 6.063 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:111:5: error: ‘__syncthreads’ was not declared in this scope
+#10 6.063   111 |     __syncthreads();
+#10 6.063       |     ^~~~~~~~~~~~~
+#10 6.066 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:86:27: error: ‘__byte_perm’ was not declared in this scope
+#10 6.066    86 | #define FLIP_ENDIANESS(x) __byte_perm(x, x, 0x0123)
+#10 6.066       |                           ^~~~~~~~~~~
+#10 6.066 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:86:27: note: in definition of macro ‘FLIP_ENDIANESS’
+#10 6.066    86 | #define FLIP_ENDIANESS(x) __byte_perm(x, x, 0x0123)
+#10 6.066       |                           ^~~~~~~~~~~
+#10 6.068 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:123:20: error: ‘t0S’ was not declared in this scope
+#10 6.068   123 |         nexts[0] = t0S[GET_BYTE(s[0], GET_BYTE_3)][warpThreadIndex] ^
+#10 6.068       |                    ^~~
+#10 6.071 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:85:26: error: ‘__byte_perm’ was not declared in this scope
+#10 6.071    85 | #define GET_BYTE(x, sel) __byte_perm(x, 0, sel)
+#10 6.071       |                          ^~~~~~~~~~~
+#10 6.071 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:85:26: note: in definition of macro ‘GET_BYTE’
+#10 6.071    85 | #define GET_BYTE(x, sel) __byte_perm(x, 0, sel)
+#10 6.071       |                          ^~~~~~~~~~~
+#10 6.073 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:146:28: error: ‘t0S’ was not declared in this scope
+#10 6.073   146 |     nexts[0] = __byte_perm(t0S[s[0] >> 24][warpThreadIndex], 0, 0x1456) ^
+#10 6.073       |                            ^~~
+#10 6.076 /home/csprng/torchcsprng/csrc/cpu/../aes.inc:146:16: error: ‘__byte_perm’ was not declared in this scope
+#10 6.076   146 |     nexts[0] = __byte_perm(t0S[s[0] >> 24][warpThreadIndex], 0, 0x1456) ^
+#10 6.076       |                ^~~~~~~~~~~
+#10 6.076 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.076 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘at::Tensor torch::csprng::cpu::aes128_key_tensor(at::Generator)’:
+#10 6.076 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:32:30: error: ‘aes’ has not been declared
+#10 6.076    32 |       return key_tensor<RNG>(aes::block_t_size, generator);
+#10 6.076       |                              ^~~
+#10 6.078 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.078 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_helper(at::TensorIterator&, const uint8_t*, transform_t)’:
+#10 6.078 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:67:31: error: ‘aes’ was not declared in this scope; did you mean ‘abs’?
+#10 6.078    67 |   torch::csprng::block_cipher<aes::block_t_size>(
+#10 6.078       |                               ^~~
+#10 6.078       |                               abs
+#10 6.078 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:67:18: error: parse error in template argument list
+#10 6.078    67 |   torch::csprng::block_cipher<aes::block_t_size>(
+#10 6.078       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.078 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In lambda function:
+#10 6.078 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:72:29: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.078    72 |           uint8_t idx_block[aes::block_t_size];
+#10 6.078       |                             ^~~
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:73:24: error: ‘idx_block’ was not declared in this scope
+#10 6.081    73 |           std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.081       |                        ^~~~~~~~~
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:73:38: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.081    73 |           std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.081       |                                      ^~~
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:75:11: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.081    75 |           aes::encrypt(idx_block, key_bytes);
+#10 6.081       |           ^~~
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:76:34: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.081    76 |           for (size_t i = 0; i < aes::block_t_size; i++) {
+#10 6.081       |                                  ^~~
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_helper(at::TensorIterator&, const uint8_t*, transform_t)’:
+#10 6.081 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:80:7: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.081    80 |       aes::block_t_size / (N * sizeof(uint_t)),
+#10 6.081       |       ^~~
+#10 6.082 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In lambda function:
+#10 6.082 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:82:20: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.082    82 |     const auto n = aes::block_t_size / (N * sizeof(uint_t));
+#10 6.082       |                    ^~~
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ecb_encrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:366:16: error: ‘aes’ was not declared in this scope; did you mean ‘abs’?
+#10 6.100   366 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.100       |                ^~~
+#10 6.100       |                abs
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:366:3: error: parse error in template argument list
+#10 6.100   366 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.100       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In lambda function:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:368:7: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.100   368 |       aes::encrypt(block, key_bytes);
+#10 6.100       |       ^~~
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ecb_encrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:366:34: error: no matching function for call to ‘block_cipher<<expression error> >(at::Tensor&, at::Tensor&, torch::csprng::cpu::aes_ecb_encrypt(at::Tensor, at::Tensor, uint8_t*)::<lambda(int64_t, uint8_t*)>)’
+#10 6.100   366 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.100       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.100   367 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.100       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   368 |       aes::encrypt(block, key_bytes);
+#10 6.100       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   369 |     }
+#10 6.100       |     ~                             
+#10 6.100   370 |   );
+#10 6.100       |   ~                               
+#10 6.100 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.100                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note: candidate: ‘template<int block_size, class cipher_t, class input_index_calc_t, class output_index_calc_t, class transform_t> void torch::csprng::block_cipher(void*, int64_t, int, input_index_calc_t, void*, int64_t, int, output_index_calc_t, c10::Device, cipher_t, int, transform_t)’
+#10 6.100   126 | void block_cipher(
+#10 6.100       |      ^~~~~~~~~~~~
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note:   template argument deduction/substitution failed:
+#10 6.100 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:366:34: error: template argument 1 is invalid
+#10 6.100   366 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.100       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.100   367 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.100       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   368 |       aes::encrypt(block, key_bytes);
+#10 6.100       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   369 |     }
+#10 6.100       |     ~                             
+#10 6.100   370 |   );
+#10 6.100       |   ~                               
+#10 6.100 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.100                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note: candidate: ‘template<int block_size, class cipher_t> void torch::csprng::block_cipher(at::Tensor, at::Tensor, cipher_t)’
+#10 6.100   163 | void block_cipher(at::Tensor input, at::Tensor output, cipher_t cipher) {
+#10 6.100       |      ^~~~~~~~~~~~
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note:   template argument deduction/substitution failed:
+#10 6.100 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.100 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:366:34: error: template argument 1 is invalid
+#10 6.100   366 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.100       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.100   367 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.100       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   368 |       aes::encrypt(block, key_bytes);
+#10 6.100       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.100   369 |     }
+#10 6.100       |     ~                             
+#10 6.100   370 |   );
+#10 6.100       |   ~                               
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ecb_decrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:374:16: error: ‘aes’ was not declared in this scope; did you mean ‘abs’?
+#10 6.102   374 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.102       |                ^~~
+#10 6.102       |                abs
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:374:3: error: parse error in template argument list
+#10 6.102   374 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.102       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In lambda function:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:376:7: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.102   376 |       aes::decrypt(block, key_bytes);
+#10 6.102       |       ^~~
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ecb_decrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:374:34: error: no matching function for call to ‘block_cipher<<expression error> >(at::Tensor&, at::Tensor&, torch::csprng::cpu::aes_ecb_decrypt(at::Tensor, at::Tensor, uint8_t*)::<lambda(int64_t, uint8_t*)>)’
+#10 6.102   374 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.102       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.102   375 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.102       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   376 |       aes::decrypt(block, key_bytes);
+#10 6.102       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   377 |     }
+#10 6.102       |     ~                             
+#10 6.102   378 |   );
+#10 6.102       |   ~                               
+#10 6.102 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.102                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note: candidate: ‘template<int block_size, class cipher_t, class input_index_calc_t, class output_index_calc_t, class transform_t> void torch::csprng::block_cipher(void*, int64_t, int, input_index_calc_t, void*, int64_t, int, output_index_calc_t, c10::Device, cipher_t, int, transform_t)’
+#10 6.102   126 | void block_cipher(
+#10 6.102       |      ^~~~~~~~~~~~
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note:   template argument deduction/substitution failed:
+#10 6.102 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:374:34: error: template argument 1 is invalid
+#10 6.102   374 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.102       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.102   375 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.102       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   376 |       aes::decrypt(block, key_bytes);
+#10 6.102       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   377 |     }
+#10 6.102       |     ~                             
+#10 6.102   378 |   );
+#10 6.102       |   ~                               
+#10 6.102 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.102                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note: candidate: ‘template<int block_size, class cipher_t> void torch::csprng::block_cipher(at::Tensor, at::Tensor, cipher_t)’
+#10 6.102   163 | void block_cipher(at::Tensor input, at::Tensor output, cipher_t cipher) {
+#10 6.102       |      ^~~~~~~~~~~~
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note:   template argument deduction/substitution failed:
+#10 6.102 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.102 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:374:34: error: template argument 1 is invalid
+#10 6.102   374 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.102       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.102   375 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.102       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   376 |       aes::decrypt(block, key_bytes);
+#10 6.102       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.102   377 |     }
+#10 6.102       |     ~                             
+#10 6.102   378 |   );
+#10 6.102       |   ~                               
+#10 6.104 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ctr_encrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.104 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:382:16: error: ‘aes’ was not declared in this scope; did you mean ‘abs’?
+#10 6.104   382 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.104       |                ^~~
+#10 6.104       |                abs
+#10 6.104 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:382:3: error: parse error in template argument list
+#10 6.104   382 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.104       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.104 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In lambda function:
+#10 6.104 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:384:25: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.104   384 |       uint8_t idx_block[aes::block_t_size];
+#10 6.104       |                         ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:385:20: error: ‘idx_block’ was not declared in this scope
+#10 6.107   385 |       std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.107       |                    ^~~~~~~~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:385:34: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.107   385 |       std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.107       |                                  ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:387:7: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.107   387 |       aes::encrypt(idx_block, key_bytes);
+#10 6.107       |       ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:388:30: error: ‘aes’ is not a class, namespace, or enumeration
+#10 6.107   388 |       for (size_t i = 0; i < aes::block_t_size; i++) {
+#10 6.107       |                              ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘void torch::csprng::cpu::aes_ctr_encrypt(at::Tensor, at::Tensor, uint8_t*)’:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:382:34: error: no matching function for call to ‘block_cipher<<expression error> >(at::Tensor&, at::Tensor&, torch::csprng::cpu::aes_ctr_encrypt(at::Tensor, at::Tensor, uint8_t*)::<lambda(int64_t, uint8_t*)>)’
+#10 6.107   382 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.107       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.107   383 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.107       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   384 |       uint8_t idx_block[aes::block_t_size];
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   385 |       std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   386 |       *(reinterpret_cast<int64_t*>(idx_block)) = idx;
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   387 |       aes::encrypt(idx_block, key_bytes);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   388 |       for (size_t i = 0; i < aes::block_t_size; i++) {
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   389 |         block[i] ^= idx_block[i];
+#10 6.107       |         ~~~~~~~~~~~~~~~~~~~~~~~~~ 
+#10 6.107   390 |       }
+#10 6.107       |       ~                           
+#10 6.107   391 |     }
+#10 6.107       |     ~                             
+#10 6.107   392 |   );
+#10 6.107       |   ~                               
+#10 6.107 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.107                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note: candidate: ‘template<int block_size, class cipher_t, class input_index_calc_t, class output_index_calc_t, class transform_t> void torch::csprng::block_cipher(void*, int64_t, int, input_index_calc_t, void*, int64_t, int, output_index_calc_t, c10::Device, cipher_t, int, transform_t)’
+#10 6.107   126 | void block_cipher(
+#10 6.107       |      ^~~~~~~~~~~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:126:6: note:   template argument deduction/substitution failed:
+#10 6.107 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:382:34: error: template argument 1 is invalid
+#10 6.107   382 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.107       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.107   383 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.107       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   384 |       uint8_t idx_block[aes::block_t_size];
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   385 |       std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   386 |       *(reinterpret_cast<int64_t*>(idx_block)) = idx;
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   387 |       aes::encrypt(idx_block, key_bytes);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   388 |       for (size_t i = 0; i < aes::block_t_size; i++) {
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   389 |         block[i] ^= idx_block[i];
+#10 6.107       |         ~~~~~~~~~~~~~~~~~~~~~~~~~ 
+#10 6.107   390 |       }
+#10 6.107       |       ~                           
+#10 6.107   391 |     }
+#10 6.107       |     ~                             
+#10 6.107   392 |   );
+#10 6.107       |   ~                               
+#10 6.107 In file included from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:17,
+#10 6.107                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note: candidate: ‘template<int block_size, class cipher_t> void torch::csprng::block_cipher(at::Tensor, at::Tensor, cipher_t)’
+#10 6.107   163 | void block_cipher(at::Tensor input, at::Tensor output, cipher_t cipher) {
+#10 6.107       |      ^~~~~~~~~~~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../block_cipher.h:163:6: note:   template argument deduction/substitution failed:
+#10 6.107 In file included from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:14:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:382:34: error: template argument 1 is invalid
+#10 6.107   382 |   block_cipher<aes::block_t_size>(input, output,
+#10 6.107       |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+#10 6.107   383 |     [key_bytes] TORCH_CSPRNG_HOST_DEVICE (int64_t idx, uint8_t* block) -> void {
+#10 6.107       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   384 |       uint8_t idx_block[aes::block_t_size];
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   385 |       std::memset(&idx_block, 0, aes::block_t_size);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   386 |       *(reinterpret_cast<int64_t*>(idx_block)) = idx;
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   387 |       aes::encrypt(idx_block, key_bytes);
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   388 |       for (size_t i = 0; i < aes::block_t_size; i++) {
+#10 6.107       |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 6.107   389 |         block[i] ^= idx_block[i];
+#10 6.107       |         ~~~~~~~~~~~~~~~~~~~~~~~~~ 
+#10 6.107   390 |       }
+#10 6.107       |       ~                           
+#10 6.107   391 |     }
+#10 6.107       |     ~                             
+#10 6.107   392 |   );
+#10 6.107       |   ~                               
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘at::Tensor torch::csprng::cpu::encrypt(at::Tensor, at::Tensor, at::Tensor, const string&, const string&)’:
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:403:61: error: ‘aes’ has not been declared
+#10 6.107   403 |   const auto input_size_bytes_rounded = (input_size_bytes + aes::block_t_size - 1) / aes::block_t_size * aes::block_t_size;
+#10 6.107       |                                                             ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:403:86: error: ‘aes’ has not been declared
+#10 6.107   403 |   const auto input_size_bytes_rounded = (input_size_bytes + aes::block_t_size - 1) / aes::block_t_size * aes::block_t_size;
+#10 6.107       |                                                                                      ^~~
+#10 6.107 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:403:106: error: ‘aes’ has not been declared
+#10 6.107   403 |   const auto input_size_bytes_rounded = (input_size_bytes + aes::block_t_size - 1) / aes::block_t_size * aes::block_t_size;
+#10 6.107       |                                                                                                          ^~~
+#10 6.109 In file included from /usr/local/lib/python3.10/dist-packages/torch/include/c10/util/Exception.h:5,
+#10 6.109                  from /usr/local/lib/python3.10/dist-packages/torch/include/ATen/core/Generator.h:8,
+#10 6.109                  from /usr/local/lib/python3.10/dist-packages/torch/include/ATen/Generator.h:2,
+#10 6.109                  from /home/csprng/torchcsprng/csrc/cpu/../kernels_commons.h:11,
+#10 6.109                  from /home/csprng/torchcsprng/csrc/cpu/kernels.cpp:8:
+#10 6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc: In function ‘at::Tensor torch::csprng::cpu::decrypt(at::Tensor, at::Tensor, at::Tensor, const string&, const string&)’:
+#10 6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:425:35: error: ‘aes’ has not been declared
+#10 6.109   425 |   TORCH_CHECK(0 <= diff && diff < aes::block_t_size, "output tensor size in bytes must be less then or equal to input tensor size in bytes, the difference must be less than block size");
+#10 6.109       |                                   ^~~
+#10 6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/macros/Macros.h:223:64: note: in definition of macro ‘C10_UNLIKELY’
+#10 6.109   223 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+#10 6.109       |                                                                ^~~~
+#10 6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/util/Exception.h:534:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+#10 6.109   534 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+#10 6.109       |       ^~~~~~~~~~~~~~~~~~~~~
+#10 6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:425:3: note: in expansion of macro ‘TORCH_CHECK’
+#10 6.109   425 |   TORCH_CHECK(0 <= diff && diff < aes::block_t_size, "output tensor size in bytes must be less then or equal to input tensor size in bytes, the difference must be less than block size");
+#10 6.109       |   ^~~~~~~~~~~
+#10 6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:426:34: error: ‘aes’ has not been declared
+#10 6.109   426 |   TORCH_CHECK(input_size_bytes % aes::block_t_size == 0, "input tensor size in bytes must divisible by cipher block size in bytes");
+#10 6.109       |                                  ^~~
+#10 6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/macros/Macros.h:223:64: note: in definition of macro ‘C10_UNLIKELY’
+#10 6.109   223 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+#10 6.109       |                                                                ^~~~
+#10 6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/util/Exception.h:534:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+#10 6.109   534 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+#10 6.109       |       ^~~~~~~~~~~~~~~~~~~~~
+#10 6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:426:3: note: in expansion of macro ‘TORCH_CHECK’
+#10 6.109   426 |   TORCH_CHECK(input_size_bytes % aes::block_t_size == 0, "input tensor size in bytes must divisible by cipher block size in bytes");
+#10 6.109       |   ^~~~~~~~~~~
+#10 6.851 error: command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1
 #10 ERROR: process "/bin/sh -c python3 setup.py install" did not complete successfully: exit code: 1
 ------
- > [csprng 6/8] RUN python3 setup.py install:
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = short int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = long int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = int; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = float; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = double; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = signed char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.830 /usr/local/lib/python3.8/dist-packages/torch/include/ATen/ParallelOpenMP.h:15:13: warning: ‘void at::parallel_for(int64_t, int64_t, int64_t, const F&) [with F = {anonymous}::randperm(at::Tensor&, int64_t, std::optional<at::Generator>) [with scalar_t = unsigned char; RNG = CSPRNGGeneratorImpl]::<lambda(int64_t, int64_t)>]’ used but never defined
-6.858 /usr/local/lib/python3.8/dist-packages/torch/utils/cpp_extension.py:369: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
-6.858   warnings.warn(msg.format('we could not find ninja.'))
-6.859 error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+ > [csprng  6/11] RUN python3 setup.py install:
+6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/macros/Macros.h:223:64: note: in definition of macro ‘C10_UNLIKELY’
+6.109   223 | #define C10_UNLIKELY(expr) (__builtin_expect(static_cast<bool>(expr), 0))
+6.109       |                                                                ^~~~
+6.109 /usr/local/lib/python3.10/dist-packages/torch/include/c10/util/Exception.h:534:7: note: in expansion of macro ‘C10_UNLIKELY_OR_CONST’
+6.109   534 |   if (C10_UNLIKELY_OR_CONST(!(cond))) {            \
+6.109       |       ^~~~~~~~~~~~~~~~~~~~~
+6.109 /home/csprng/torchcsprng/csrc/cpu/../kernels_body.inc:426:3: note: in expansion of macro ‘TORCH_CHECK’
+6.109   426 |   TORCH_CHECK(input_size_bytes % aes::block_t_size == 0, "input tensor size in bytes must divisible by cipher block size in bytes");
+6.109       |   ^~~~~~~~~~~
+6.851 error: command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1
 ------
 failed to solve: process "/bin/sh -c python3 setup.py install" did not complete successfully: exit code: 1
