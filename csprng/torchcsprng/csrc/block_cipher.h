@@ -18,6 +18,7 @@
 #if defined(__CUDACC__) || defined(__HIPCC__)
 #include <c10/cuda/CUDAStream.h>
 #include <ATen/cuda/Exceptions.h>
+#include "myaes.cuh"
 #endif
 
 #if defined(__CUDACC__) || defined(__HIPCC__)
@@ -144,12 +145,18 @@ void block_cipher(
     const auto threads = 256;
     const auto grid = (output_numel + (threads * output_elem_per_block) - 1) / (threads * output_elem_per_block);
     auto stream = at::cuda::getCurrentCUDAStream();
-    block_cipher_kernel_cuda<block_size><<<grid, threads, 0, stream>>>(
-        cipher, output_elem_per_block,
-        input_ptr, input_numel, input_type_size, input_index_calc,
-        output_ptr, output_numel, output_type_size, output_index_calc,
-        transform_func
+    cudaMemcpy(output_ptr, input_ptr, output_numel*output_type_size, cudaMemcpyDeviceToDevice);
+    void *ptr;
+    cudaMalloc(&ptr, 176);
+    myencrypt<<<grid, threads, 0, stream>>>(
+      (uint32_t*)output_ptr, (uint8_t*)ptr
     );
+    // block_cipher_kernel_cuda<block_size><<<grid, threads, 0, stream>>>(
+    //     cipher, output_elem_per_block,
+    //     input_ptr, input_numel, input_type_size, input_index_calc,
+    //     output_ptr, output_numel, output_type_size, output_index_calc,
+    //     transform_func
+    // );
     AT_CUDA_CHECK(cudaGetLastError());
 #else
     TORCH_CHECK(false, "torchcsprng was compiled without CUDA support");
