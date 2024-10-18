@@ -19,6 +19,7 @@
 #include <c10/cuda/CUDAStream.h>
 #include <ATen/cuda/Exceptions.h>
 #include "myaes.cuh"
+#include <curand.h>
 #endif
 
 #if defined(__CUDACC__) || defined(__HIPCC__)
@@ -142,15 +143,23 @@ void block_cipher(
     );
   } else if (device.type() == at::kCUDA) {
 #if defined(__CUDACC__) || defined(__HIPCC__)
-    const auto threads = 256;
-    const auto grid = (output_numel + (threads * output_elem_per_block) - 1) / (threads * output_elem_per_block);
-    auto stream = at::cuda::getCurrentCUDAStream();
-    cudaMemcpy(output_ptr, input_ptr, output_numel*output_type_size, cudaMemcpyDeviceToDevice);
-    void *ptr;
-    cudaMalloc(&ptr, 176);
-    myencrypt<<<grid, threads, 0, stream>>>(
-      (uint32_t*)output_ptr, (uint8_t*)ptr
-    );
+    static bool key_init = false;
+    static uint32_t *key;
+    static curandGenerator_t generator;
+    if (!key_init) {
+      cudaMalloc(&key, 176);
+      curandCreateGenerator(&generator, CURAND_RNG_PSEUDO_DEFAULT);
+      curandGenerate(generator, key, 44);
+      key_init = true;
+    }
+
+    uint64_t num_aes_block = (output_numel * output_type_size + 15) / 16;
+    const auto threads = 512;
+    const auto grid = (num_aes_block + threads - 1) / threads;
+    if (input_ptr != nullptr) {
+      cudaMemcpy(output_ptr, input_ptr, output_numel*output_type_size, cudaMemcpyDeviceToDevice);
+    }
+    myencrypt<<<grid, threads>>>((uint32_t*)output_ptr, key, num_aes_block);
     // block_cipher_kernel_cuda<block_size><<<grid, threads, 0, stream>>>(
     //     cipher, output_elem_per_block,
     //     input_ptr, input_numel, input_type_size, input_index_calc,

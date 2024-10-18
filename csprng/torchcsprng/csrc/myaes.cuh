@@ -89,7 +89,7 @@ uint32_t T0c[T_TABLE_SIZE] = {
     0x7bb0b0cb, 0xa85454fc, 0x6dbbbbd6, 0x2c16163a
 };
 
-__global__ void myencrypt(uint32_t* data, const uint8_t* rk) {
+__global__ void myencrypt(uint32_t *data, uint32_t *rk, uint64_t n) {
     uint32_t s[4];
     uint32_t nexts[4];
 
@@ -113,6 +113,9 @@ __global__ void myencrypt(uint32_t* data, const uint8_t* rk) {
         rkS[threadIdx.x] = rk[threadIdx.x];
     }
     __syncthreads();
+    if(threadID >= n) {
+        return;
+    }
 
     // Encrypt
     // Initial Step 

@@ -5,6 +5,7 @@ RUN apt update && apt install -y bash g++ python3 python3-pip
 RUN pip3 install torch torchvision numpy
 ENV TORCH_CUDA_ARCH_LIST=8.6
 ENV FORCE_CUDA=1
+ENV NVCC_FLAGS='-lcurand'
 
 COPY ./csprng /home/csprng
 WORKDIR /home/csprng
